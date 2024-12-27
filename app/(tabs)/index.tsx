@@ -1,5 +1,5 @@
-import React, { useState} from 'react';
-import { StyleSheet, Text, View, TouchableOpacity,} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 const Calculator = () => {
@@ -23,7 +23,7 @@ const Calculator = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
       <View style={styles.calculatorContainer}>
         {/* Calculator Display */}
         <View style={styles.display}>
@@ -36,7 +36,7 @@ const Calculator = () => {
         <View style={styles.buttonGrid}>
           {/* Top Row */}
           <View style={styles.row}>
-            <TouchableOpacity style={[styles.button, styles.grayButton]} onPress={clearExpression}>
+            <TouchableOpacity style={[styles.button, styles.redButton]} onPress={clearExpression}>
               <Text style={styles.buttonText}>AC</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.button, styles.grayButton]} onPress={() => handleButtonClick("%")}>
@@ -65,28 +65,18 @@ const Calculator = () => {
                   key={num}
                   style={[
                     styles.button,
-                    num === '=' ? styles.greenButton : styles.darkGrayButton
+                    num === '=' ? styles.greenButton : styles.lightGrayButton
                   ]}
                   onPress={() => num === '=' ? calculateResult() : handleButtonClick(num.toString())}
                 >
                   <Text style={styles.buttonText}>{num}</Text>
                 </TouchableOpacity>
               ))}
-              {(
-                <TouchableOpacity
-                  style={[styles.button, styles.orangeButton]}
-                  onPress={() => handleButtonClick(rowIndex === 0 ? '-' : rowIndex === 1 ? '+': rowIndex ===2? '×':"")}
-                >
-                  <Text style={styles.buttonText}>
-                    {rowIndex === 0 ? '-' : rowIndex === 1 ? '+' :rowIndex ===2? '×' :"↺"}
-                  </Text>
-                </TouchableOpacity>
-              )}
             </View>
           ))}
         </View>
       </View>
-      <Text style={styles.footerText}>Calc by tapan</Text>
+      <Text style={styles.footerText}>Calc by shrusti</Text>
     </View>
   );
 };
@@ -94,60 +84,65 @@ const Calculator = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
-    padding: 24,
+    backgroundColor: 'white',
+    padding: 16,
   },
   calculatorContainer: {
     flex: 1,
     justifyContent: 'flex-end',
-    marginBottom: 20,
   },
   display: {
-    padding: 20,
-    marginBottom: 20,
+    padding: 15,
+    marginBottom: 15,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 12,
   },
   displayText: {
-    color: 'white',
-    fontSize: 64,
+    color: 'black',
+    fontSize: 48,
     textAlign: 'right',
     fontWeight: '300',
   },
   buttonGrid: {
-    gap: 12,
+    gap: 10,
   },
   row: {
     flexDirection: 'row',
-    gap: 12,
-    marginBottom: 12,
+    gap: 10,
+    marginBottom: 10,
   },
   button: {
     flex: 1,
     aspectRatio: 1,
-    borderRadius: 12,
+    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
+    elevation: 2,
   },
   buttonText: {
-    color: 'white',
-    fontSize: 24,
+    color: 'black',
+    fontSize: 22,
   },
-  grayButton: {
-    backgroundColor: '#666666',
+  redButton: {
+    backgroundColor: '#FF4C4C',
   },
   greenButton: {
-    backgroundColor: '#00FF00',
+    backgroundColor: '#4CAF50',
   },
-  darkGrayButton: {
-    backgroundColor: '#333333',
+  lightGrayButton: {
+    backgroundColor: '#E0E0E0',
+  },
+  grayButton: {
+    backgroundColor: '#B0B0B0',
   },
   orangeButton: {
     backgroundColor: '#FF9F0A',
   },
   footerText: {
-    color: 'white',
+    color: 'black',
     textAlign: 'center',
     marginVertical: 10,
-    fontSize: 16,
+    fontSize: 14,
   },
 });
 
